@@ -1,0 +1,91 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Courier New;
+}
+
+body {
+	background: #f1f1f1;
+}
+
+#container {
+	margin: auto;
+	width: 900px;
+	height: 400px;
+	text-align: center;
+}
+
+#menu {
+	text-align: center;
+	background: #333;
+	box-shadow: 0 0 15px #333;
+}
+
+li {
+	display: inline-block;
+	padding: 10px;
+	color: #F3B222;
+	font-size: 25px;
+	position: relative;
+}
+
+li:hover {
+	color: #f1f1f1;
+}
+
+.active {
+	color: #f1f1f1;
+}
+
+#creator {
+	margin-top: 150px;
+	font-weight: bold;
+	font-size: 28px;
+	color: #444;
+}
+
+#mail {
+	font-weight: bold;
+	font-size: 25px;
+	color: #444;
+}
+
+
+#message {
+	font-size: 22px;
+	color: #444;
+}
+
+#advice {
+	margin-top: 20px;
+	font-size: 22px;
+	color: #444;
+}
+
+#year {
+	margin-top: 100px;
+	font-weight: bold;
+	font-size: 25px;
+	color: #444;
+}
+
+a:link {
+	text-decoration: none;
+	color: #444;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #444;
+}
+
+a:active {
+	text-decoration: none;
+	color: #444;
+}
+
+a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+	color: #444;
+}
