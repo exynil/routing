@@ -13,12 +13,10 @@ var octet;
 var dots;
 var number_of_hosts;
 var number_of_addresses;
-var netmask = [];
-var netmask_bin = [];
-var netmask_dec = [];
-var ip = [];
 var ip_bin = [];
 var ip_dec = [];
+var netmask_bin = [];
+var netmask_dec = [];
 var network_bin = [];
 var network_dec = [];
 var broadcast_bin = [];
@@ -44,19 +42,22 @@ function data_test() {
     for (var i = 0; i <= 3; i++) {
         for (var k = 0; k <= 3; k++) {
             if (input_01.charAt(k) == '.' || input_01.charAt(k) == ',' || input_01.charAt(k) == '/') {
-                ip[i] = Number(input_01.substring(0, k));
+                ip_dec[i] = Number(input_01.substring(0, k));
                 input_01 = input_01.slice(k + 1);
                 dots++;
                 break;
             }
         }
-        if (i == 3) {
-            ip[i] = Number(input_01);
+        if (i == 3 && input_01.length > 0 && dots == 3) {
+            ip_dec[i] = Number(input_01);
+        }
+        else if (i == 3 && input_01.length == 0 && dots == 3) {
+            return;
         }
     }
     if (dots == 3) {
         for (var i = 0; i <= 3; i++) {
-            if (ip[i] < 0 || ip[i] > 255) {
+            if (ip_dec[i] < 0 || ip_dec[i] > 255) {
                 input_01_test = false;
                 break;
             }
@@ -67,7 +68,7 @@ function data_test() {
     if (input_02 < 0 || input_02 > 32) {
         input_02_test = false;
     }
-    if (input_01_test == true && input_02_test == true && input_02 != '') {
+    if (input_01_test == true && input_02_test == true && input_02 != '' && input_02 != undefined) {
         calculation();
     } else {
         out_01.innerHTML = '';
@@ -76,105 +77,105 @@ function data_test() {
 
 function calculation() {
     switch (input_02) {
-        case '0':
-            netmask = [0, 0, 0, 0];
-            break;
-        case '1':
-            netmask = [128, 0, 0, 0];
-            break;
-        case '2':
-            netmask = [192, 0, 0, 0];
-            break;
-        case '3':
-            netmask = [224, 0, 0, 0];
-            break;
-        case '4':
-            netmask = [240, 0, 0, 0];
-            break;
-        case '5':
-            netmask = [248, 0, 0, 0];
-            break;
-        case '6':
-            netmask = [252, 0, 0, 0];
-            break;
-        case '7':
-            netmask = [254, 0, 0, 0];
-            break;
-        case '8':
-            netmask = [255, 0, 0, 0];
-            break;
-        case '9':
-            netmask = [255, 128, 0, 0];
-            break;
-        case '10':
-            netmask = [255, 192, 0, 0];
-            break;
-        case '11':
-            netmask = [255, 224, 0, 0];
-            break;
-        case '12':
-            netmask = [255, 240, 0, 0];
-            break;
-        case '13':
-            netmask = [255, 248, 0, 0];
-            break;
-        case '14':
-            netmask = [255, 252, 0, 0];
-            break;
-        case '15':
-            netmask = [255, 254, 0, 0];
-            break;
-        case '16':
-            netmask = [255, 255, 0, 0];
-            break;
-        case '17':
-            netmask = [255, 255, 128, 0];
-            break;
-        case '18':
-            netmask = [255, 255, 192, 0];
-            break;
-        case '19':
-            netmask = [255, 255, 224, 0];
-            break;
-        case '20':
-            netmask = [255, 255, 240, 0];
-            break;
-        case '21':
-            netmask = [255, 255, 248, 0];
-            break;
-        case '22':
-            netmask = [255, 255, 252, 0];
-            break;
-        case '23':
-            netmask = [255, 255, 254, 0];
-            break;
-        case '24':
-            netmask = [255, 255, 255, 0];
-            break;
-        case '25':
-            netmask = [255, 255, 255, 128];
-            break;
-        case '26':
-            netmask = [255, 255, 255, 192];
-            break;
-        case '27':
-            netmask = [255, 255, 255, 224];
-            break;
-        case '28':
-            netmask = [255, 255, 255, 240];
-            break;
-        case '29':
-            netmask = [255, 255, 255, 248];
-            break;
-        case '30':
-            netmask = [255, 255, 255, 252];
-            break;
-        case '31':
-            netmask = [255, 255, 255, 254];
-            break;
-        case '32':
-            netmask = [255, 255, 255, 255];
-            break;
+    case '0':
+        netmask_dec = [0, 0, 0, 0];
+        break;
+    case '1':
+        netmask_dec = [128, 0, 0, 0];
+        break;
+    case '2':
+        netmask_dec = [192, 0, 0, 0];
+        break;
+    case '3':
+        netmask_dec = [224, 0, 0, 0];
+        break;
+    case '4':
+        netmask_dec = [240, 0, 0, 0];
+        break;
+    case '5':
+        netmask_dec = [248, 0, 0, 0];
+        break;
+    case '6':
+        netmask_dec = [252, 0, 0, 0];
+        break;
+    case '7':
+        netmask_dec = [254, 0, 0, 0];
+        break;
+    case '8':
+        netmask_dec = [255, 0, 0, 0];
+        break;
+    case '9':
+        netmask_dec = [255, 128, 0, 0];
+        break;
+    case '10':
+        netmask_dec = [255, 192, 0, 0];
+        break;
+    case '11':
+        netmask_dec = [255, 224, 0, 0];
+        break;
+    case '12':
+        netmask_dec = [255, 240, 0, 0];
+        break;
+    case '13':
+        netmask_dec = [255, 248, 0, 0];
+        break;
+    case '14':
+        netmask_dec = [255, 252, 0, 0];
+        break;
+    case '15':
+        netmask_dec = [255, 254, 0, 0];
+        break;
+    case '16':
+        netmask_dec = [255, 255, 0, 0];
+        break;
+    case '17':
+        netmask_dec = [255, 255, 128, 0];
+        break;
+    case '18':
+        netmask_dec = [255, 255, 192, 0];
+        break;
+    case '19':
+        netmask_dec = [255, 255, 224, 0];
+        break;
+    case '20':
+        netmask_dec = [255, 255, 240, 0];
+        break;
+    case '21':
+        netmask_dec = [255, 255, 248, 0];
+        break;
+    case '22':
+        netmask_dec = [255, 255, 252, 0];
+        break;
+    case '23':
+        netmask_dec = [255, 255, 254, 0];
+        break;
+    case '24':
+        netmask_dec = [255, 255, 255, 0];
+        break;
+    case '25':
+        netmask_dec = [255, 255, 255, 128];
+        break;
+    case '26':
+        netmask_dec = [255, 255, 255, 192];
+        break;
+    case '27':
+        netmask_dec = [255, 255, 255, 224];
+        break;
+    case '28':
+        netmask_dec = [255, 255, 255, 240];
+        break;
+    case '29':
+        netmask_dec = [255, 255, 255, 248];
+        break;
+    case '30':
+        netmask_dec = [255, 255, 255, 252];
+        break;
+    case '31':
+        netmask_dec = [255, 255, 255, 254];
+        break;
+    case '32':
+        netmask_dec = [255, 255, 255, 255];
+        break;
     }
     sum = 0;
     octet = -1;
@@ -182,7 +183,7 @@ function calculation() {
     for (var i = 0; i <= 3; i++) {
         bin = 0;
         count = 1;
-        num = ip[i];
+        num = ip_dec[i];
         if (num == 0) {
             ip_bin[i] = bin;
         } else {
@@ -205,7 +206,7 @@ function calculation() {
     for (var i = 0; i <= 3; i++) {
         bin = 0;
         count = 1;
-        num = netmask[i];
+        num = netmask_dec[i];
         if (num == 0) {
             sum += 8;
             netmask_bin[i] = bin;
@@ -297,24 +298,18 @@ function calculation() {
             broadcast_bin[i] = ip_bin[i];
         }
     }
-    for (var i = 0; i <= 3; i++) {
+    for (var i = 0; i <= 1; i++) {
         for (var k = 0; k <= 3; k++) {
             count = 8;
             step = 1;
             num_backup = 0;
             switch (i) {
-                case 0:
-                    num = ip_bin[k];
-                    break;
-                case 1:
-                    num = netmask_bin[k];
-                    break;
-                case 2:
-                    num = network_bin[k];
-                    break;
-                case 3:
-                    num = broadcast_bin[k];
-                    break;
+            case 0:
+                num = network_bin[k];
+                break;
+            case 1:
+                num = broadcast_bin[k];
+                break;
             }
             while (count != 0) {
                 num_backup += num % 10 * step;
@@ -324,18 +319,12 @@ function calculation() {
                 count--;
             }
             switch (i) {
-                case 0:
-                    ip_dec[k] = num_backup;
-                    break;
-                case 1:
-                    netmask_dec[k] = num_backup;
-                    break;
-                case 2:
-                    network_dec[k] = num_backup;
-                    break;
-                case 3:
-                    broadcast_dec[k] = num_backup;
-                    break;
+            case 0:
+                network_dec[k] = num_backup;
+                break;
+            case 1:
+                broadcast_dec[k] = num_backup;
+                break;
             }
         }
     }
@@ -362,7 +351,7 @@ function calculation() {
     table[0].innerHTML += '<tr><td class="name">Широковещательный адрес</td><td class="value">' + broadcast_dec[0] + '.' + broadcast_dec[1] + '.' + broadcast_dec[2] + '.' + broadcast_dec[3] + '</td></tr>';
     table[0].innerHTML += '<tr><td class="name">Начальный адрес</td><td class="value">' + hostmin[0] + '.' + hostmin[1] + '.' + hostmin[2] + '.' + hostmin[3] + '</td></tr>';
     table[0].innerHTML += '<tr><td class="name">Конечный адрес</td><td class="value">' + hostmax[0] + '.' + hostmax[1] + '.' + hostmax[2] + '.' + hostmax[3] + '</td></tr>';
-    if (netmask[3] == 255 || netmask[3] == 254) {
+    if (netmask_dec[3] == 255 || netmask_dec[3] == 254) {
         number_of_addresses = number_of_hosts;
         table[0].innerHTML += '<tr><td class="name">Количество хостов</td><td class="value">' + number_of_hosts + '</td></tr>';
         table[0].innerHTML += '<tr><td class="name">Количество адресов</td><td class="value">' + number_of_addresses + '</td></tr>';

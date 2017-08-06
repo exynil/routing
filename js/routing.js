@@ -24,10 +24,8 @@ var input_01;
 var input_02;
 var table;
 var tr_result;
-var ip = [];
 var ip_bin = [];
 var ip_dec = [];
-var netmask = [];
 var netmask_bin = [];
 var netmask_dec = [];
 var network_bin = [];
@@ -181,14 +179,12 @@ function calculation() {
     octet = -1;
     cycle_stop = false;
     access = true;
-    for (var i = 0; i <= 3; i++) {
-        ip[i] = temporary_ip[i];
-        netmask[i] = temporary_netmask[i];
-    }
+    ip_dec = temporary_ip;
+    netmask_dec = temporary_netmask;
     for (var i = 0; i <= 3; i++) {
         bin = 0;
         count = 1;
-        num = ip[i];
+        num = ip_dec[i];
         if (num == 0) {
             ip_bin[i] = bin;
         } else {
@@ -211,7 +207,7 @@ function calculation() {
     for (var i = 0; i <= 3; i++) {
         bin = 0;
         count = 1;
-        num = netmask[i];
+        num = netmask_dec[i];
         if (num == 0) {
             sum += 8;
             netmask_bin[i] = bin;
@@ -265,7 +261,6 @@ function calculation() {
                 num /= 10;
                 num = num.toFixed(0);
                 count--;
-
             }
             count = count_backup;
             while (count_backup != 0) {
@@ -295,7 +290,6 @@ function calculation() {
                 step *= 10;
                 count--;
             }
-
             broadcast_bin[i] = num;
         } else if (i > octet) {
             broadcast_bin[i] = 11111111;
@@ -303,24 +297,18 @@ function calculation() {
             broadcast_bin[i] = ip_bin[i];
         }
     }
-    for (var i = 0; i <= 3; i++) {
+    for (var i = 0; i <= 1; i++) {
         for (var k = 0; k <= 3; k++) {
             count = 8;
             step = 1;
             num_backup = 0;
             switch (i) {
-                case 0:
-                    num = ip_bin[k];
-                    break;
-                case 1:
-                    num = netmask_bin[k];
-                    break;
-                case 2:
-                    num = network_bin[k];
-                    break;
-                case 3:
-                    num = broadcast_bin[k];
-                    break;
+            case 0:
+                num = network_bin[k];
+                break;
+            case 1:
+                num = broadcast_bin[k];
+                break;
             }
             while (count != 0) {
                 num_backup += num % 10 * step;
@@ -330,18 +318,12 @@ function calculation() {
                 count--;
             }
             switch (i) {
-                case 0:
-                    ip_dec[k] = num_backup;
-                    break;
-                case 1:
-                    netmask_dec[k] = num_backup;
-                    break;
-                case 2:
-                    network_dec[k] = num_backup;
-                    break;
-                case 3:
-                    broadcast_dec[k] = num_backup;
-                    break;
+            case 0:
+                network_dec[k] = num_backup;
+                break;
+            case 1:
+                broadcast_dec[k] = num_backup;
+                break;
             }
         }
     }
@@ -408,22 +390,22 @@ function calculation() {
                 count_ip++;
             } else {
                 switch (count_ip) {
-                    case 0:
-                        temporary_ip[0] = broadcast_dec[0] + 1;
-                        temporary_netmask[0] = 0;
-                        break;
-                    case 1:
-                        temporary_ip[1] = broadcast_dec[1] + 1;
-                        temporary_netmask[1] = 0;
-                        break;
-                    case 2:
-                        temporary_ip[2] = broadcast_dec[2] + 1;
-                        temporary_netmask[2] = 0;
-                        break;
-                    case 3:
-                        temporary_ip[3] = broadcast_dec[3] + 1;
-                        temporary_netmask[3] = 0;
-                        break;
+                case 0:
+                    temporary_ip[0] = broadcast_dec[0] + 1;
+                    temporary_netmask[0] = 0;
+                    break;
+                case 1:
+                    temporary_ip[1] = broadcast_dec[1] + 1;
+                    temporary_netmask[1] = 0;
+                    break;
+                case 2:
+                    temporary_ip[2] = broadcast_dec[2] + 1;
+                    temporary_netmask[2] = 0;
+                    break;
+                case 3:
+                    temporary_ip[3] = broadcast_dec[3] + 1;
+                    temporary_netmask[3] = 0;
+                    break;
                 }
             }
         }
@@ -488,22 +470,22 @@ function calculation() {
                 count_ip--;
             } else {
                 switch (count_ip) {
-                    case 0:
-                        temporary_ip[0] = broadcast_dec[0] + 1;
-                        temporary_netmask[0] = 0;
-                        break;
-                    case 1:
-                        temporary_ip[1] = broadcast_dec[1] + 1;
-                        temporary_netmask[1] = 0;
-                        break;
-                    case 2:
-                        temporary_ip[2] = broadcast_dec[2] + 1;
-                        temporary_netmask[2] = 0;
-                        break;
-                    case 3:
-                        temporary_ip[3] = broadcast_dec[3] + 1;
-                        temporary_netmask[3] = 0;
-                        break;
+                case 0:
+                    temporary_ip[0] = broadcast_dec[0] + 1;
+                    temporary_netmask[0] = 0;
+                    break;
+                case 1:
+                    temporary_ip[1] = broadcast_dec[1] + 1;
+                    temporary_netmask[1] = 0;
+                    break;
+                case 2:
+                    temporary_ip[2] = broadcast_dec[2] + 1;
+                    temporary_netmask[2] = 0;
+                    break;
+                case 3:
+                    temporary_ip[3] = broadcast_dec[3] + 1;
+                    temporary_netmask[3] = 0;
+                    break;
                 }
             }
         }
