@@ -340,7 +340,7 @@ function calculation() {
             ban++;
             count_of_routing = 1;
             if (type_of_result != 2) {
-                table[0].innerHTML += '<tr><td> </td><td> </td><td> </td><td> </td></tr>';
+                table[0].innerHTML += '<tr><td></td><td></td><td></td><td></td></tr>';
             }
             for (var i = 0; i <= 2; i++) {
                 temporary_ip[i] = ban_02[i];
@@ -372,7 +372,7 @@ function calculation() {
                     ban++;
                     count_of_routing = 1;
                     if (type_of_result != 2) {
-                        table[0].innerHTML += '<tr><td> </td><td> </td><td> </td><td> </td></tr>';
+                        table[0].innerHTML += '<tr><td></td><td></td><td></td><td></td></tr>';
                     }
                     for (var i = 0; i <= 2; i++) {
                         temporary_ip[i] = ban_02[i];

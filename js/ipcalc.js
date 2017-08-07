@@ -332,7 +332,7 @@ function calculation() {
         hostmin[i] = network_dec[i];
         hostmax[i] = broadcast_dec[i];
     }
-    if (netmask_dec[3] == 255) {
+    if (netmask_dec[3] == 255 || netmask_dec[3] == 254) {
         hostmin[3] = network_dec[3];
         hostmax[3] = broadcast_dec[3];
     } else {
@@ -347,10 +347,13 @@ function calculation() {
     table = document.getElementsByTagName('table');
     table[0].innerHTML += '<tr><td class="name">Адрес</td><td class="value">' + ip_dec[0] + '.' + ip_dec[1] + '.' + ip_dec[2] + '.' + ip_dec[3] + '</td></tr>';
     table[0].innerHTML += '<tr><td class="name">Маска подсети</td><td class="value">' + netmask_dec[0] + '.' + netmask_dec[1] + '.' + netmask_dec[2] + '.' + netmask_dec[3] + '</td></tr>';
+    table[0].innerHTML += '<tr><td></td><td></td></tr>';
     table[0].innerHTML += '<tr><td class="name">Адрес сети</td><td class="value">' + network_dec[0] + '.' + network_dec[1] + '.' + network_dec[2] + '.' + network_dec[3] + '</td></tr>';
     table[0].innerHTML += '<tr><td class="name">Широковещательный адрес</td><td class="value">' + broadcast_dec[0] + '.' + broadcast_dec[1] + '.' + broadcast_dec[2] + '.' + broadcast_dec[3] + '</td></tr>';
+    table[0].innerHTML += '<tr><td></td><td></td></tr>';
     table[0].innerHTML += '<tr><td class="name">Начальный адрес</td><td class="value">' + hostmin[0] + '.' + hostmin[1] + '.' + hostmin[2] + '.' + hostmin[3] + '</td></tr>';
     table[0].innerHTML += '<tr><td class="name">Конечный адрес</td><td class="value">' + hostmax[0] + '.' + hostmax[1] + '.' + hostmax[2] + '.' + hostmax[3] + '</td></tr>';
+    table[0].innerHTML += '<tr><td></td><td></td></tr>';
     if (netmask_dec[3] == 255 || netmask_dec[3] == 254) {
         number_of_addresses = number_of_hosts;
         table[0].innerHTML += '<tr><td class="name">Количество хостов</td><td class="value">' + number_of_hosts + '</td></tr>';

@@ -1,7 +1,35 @@
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../fonts/pt_mono_cyrillic_ext.woff2) format('woff2');
+}
+
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../fonts/pt_mono_cyrillic.woff2) format('woff2');
+}
+
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: local('PT Mono'), local('PTMono-Regular'), url(../fonts/pt_mono_latin_ext.woff2) format('woff2');
+}
+
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../fonts/pt_mono_latin.woff2) format('woff2');
+}
+
 * {
 	margin: 0;
 	padding: 0;
-	font-family: Courier New;
+	font-family: 'PT Mono', monospace;
 }
 
 body {
@@ -106,11 +134,13 @@ table {
 
 td {
 	border: 1px solid rgba(200, 200, 200, 0.5);
+	height: 25px;
 }
 
 th {
 	border: 1px solid rgba(200, 200, 200, 0.5);
 	color: #c65555;
+	height: 25px;
 }
 
 .result:hover {

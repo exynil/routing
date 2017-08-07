@@ -1,7 +1,35 @@
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../fonts/pt_mono_cyrillic_ext.woff2) format('woff2');
+}
+
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../fonts/pt_mono_cyrillic.woff2) format('woff2');
+}
+
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: local('PT Mono'), local('PTMono-Regular'), url(../fonts/pt_mono_latin_ext.woff2) format('woff2');
+}
+
+@font-face {
+	font-family: 'PT Mono';
+	font-style: normal;
+	font-weight: 400;
+	src: url(../fonts/pt_mono_latin.woff2) format('woff2');
+}
+
 * {
 	margin: 0;
 	padding: 0;
-	font-family: Courier New;
+	font-family: 'PT Mono', monospace;
 }
 
 body {
@@ -40,7 +68,7 @@ li:hover {
 #creator {
 	margin-top: 100px;
 	font-weight: bold;
-	font-size: 28px;
+	font-size: 25px;
 	color: #444;
 }
 
