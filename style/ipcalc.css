@@ -2,21 +2,7 @@
 	font-family: 'PT Mono';
 	font-style: normal;
 	font-weight: 400;
-	src: url(../fonts/pt_mono_cyrillic_ext.woff2) format('woff2');
-}
-
-@font-face {
-	font-family: 'PT Mono';
-	font-style: normal;
-	font-weight: 400;
 	src: url(../fonts/pt_mono_cyrillic.woff2) format('woff2');
-}
-
-@font-face {
-	font-family: 'PT Mono';
-	font-style: normal;
-	font-weight: 400;
-	src: local('PT Mono'), local('PTMono-Regular'), url(../fonts/pt_mono_latin_ext.woff2) format('woff2');
 }
 
 @font-face {
@@ -31,6 +17,7 @@
 	padding: 0;
 	font-family: 'PT Mono', monospace;
 }
+
 body {
 	background: #f1f1f1;
 }
