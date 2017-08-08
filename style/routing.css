@@ -31,17 +31,17 @@ body {
 li {
 	display: inline-block;
 	padding: 10px;
-	color: #F3B222;
+	color: #ffc857;
 	font-size: 25px;
 	position: relative;
 }
 
 li:hover {
-	color: #f1f1f1;
+	background: rgba(10, 10, 10, 0.3);
 }
 
 .active {
-	color: #f1f1f1;
+	background: rgba(10, 10, 10, 0.3);
 }
 
 #container {

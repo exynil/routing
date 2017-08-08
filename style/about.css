@@ -38,34 +38,35 @@ body {
 li {
 	display: inline-block;
 	padding: 10px;
-	color: #F3B222;
+	color: #ffc857;
 	font-size: 25px;
 	position: relative;
 }
 
 li:hover {
-	color: #f1f1f1;
+	background: rgba(10, 10, 10, 0.3);
 }
 
 .active {
-	color: #f1f1f1;
+	background: rgba(10, 10, 10, 0.3);
 }
 
 #creator {
 	margin-top: 100px;
 	font-weight: bold;
-	font-size: 25px;
+	font-size: 22px;
 	color: #444;
 }
 
 #mail {
+	margin-top: 40px;
 	font-weight: bold;
-	font-size: 25px;
+	font-size: 22px;
 	color: #444;
 }
 
-
 #message {
+	margin-top: 40px;
 	font-size: 22px;
 	color: #444;
 }
@@ -78,8 +79,7 @@ li:hover {
 
 #year {
 	margin-top: 100px;
-	font-weight: bold;
-	font-size: 25px;
+	font-size: 22px;
 	color: #444;
 }
 
