@@ -71,10 +71,8 @@ function begin() {
     count_of_routing = 1;
     count_of_result = 0;
     count_of_netmask = 0;
-    for (var i = 0; i <= 3; i++) {
-        temporary_ip[i] = 0;
-        temporary_netmask[i] = 0;
-    }
+    temporary_ip = [0, 0, 0, 0];
+    temporary_netmask = [0, 0, 0, 0];
     for (var i = 0; i <= 3; i++) {
         for (var k = 0; k <= 3; k++) {
             if (input_01.charAt(k) == '.' || input_01.charAt(k) == ',' || input_01.charAt(k) == '/') {
