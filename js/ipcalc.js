@@ -27,6 +27,7 @@ var out_01 = document.getElementById('block_01');
 var table;
 var input_01;
 var input_02;
+var wildcard;
 
 function data_test() {
     out_01.innerHTML = '';
@@ -79,102 +80,135 @@ function calculation() {
     switch (input_02) {
     case '0':
         netmask_dec = [0, 0, 0, 0];
+        wildcard = '+255.255.255.255';
         break;
     case '1':
         netmask_dec = [128, 0, 0, 0];
+        wildcard = '+127.255.255.255';
         break;
     case '2':
         netmask_dec = [192, 0, 0, 0];
+        wildcard = '+63.255.255.255';
         break;
     case '3':
         netmask_dec = [224, 0, 0, 0];
+        wildcard = '+31.255.255.255';
         break;
     case '4':
         netmask_dec = [240, 0, 0, 0];
+        wildcard = '+15.255.255.255';
         break;
     case '5':
         netmask_dec = [248, 0, 0, 0];
+        wildcard = '+7.255.255.255';
         break;
     case '6':
         netmask_dec = [252, 0, 0, 0];
+        wildcard = '+3.255.255.255';
         break;
     case '7':
         netmask_dec = [254, 0, 0, 0];
+        wildcard = '+1.255.255.255';
         break;
     case '8':
         netmask_dec = [255, 0, 0, 0];
+        wildcard = '+0.255.255.255';
         break;
     case '9':
         netmask_dec = [255, 128, 0, 0];
+        wildcard = '+0.127.255.255';
         break;
     case '10':
         netmask_dec = [255, 192, 0, 0];
+        wildcard = '+0.63.255.255';
         break;
     case '11':
         netmask_dec = [255, 224, 0, 0];
+        wildcard = '+0.31.255.255';
         break;
     case '12':
         netmask_dec = [255, 240, 0, 0];
+        wildcard = '+0.15.255.255';
         break;
     case '13':
         netmask_dec = [255, 248, 0, 0];
+        wildcard = '+0.7.255.255';
         break;
     case '14':
         netmask_dec = [255, 252, 0, 0];
+        wildcard = '+0.3.255.255';
         break;
     case '15':
         netmask_dec = [255, 254, 0, 0];
+        wildcard = '+0.1.255.255';
         break;
     case '16':
         netmask_dec = [255, 255, 0, 0];
+        wildcard = '+0.0.255.255';
         break;
     case '17':
         netmask_dec = [255, 255, 128, 0];
+        wildcard = '+0.0.127.255';
         break;
     case '18':
         netmask_dec = [255, 255, 192, 0];
+        wildcard = '+0.0.63.255';
         break;
     case '19':
         netmask_dec = [255, 255, 224, 0];
+        wildcard = '+0.0.31.255';
         break;
     case '20':
         netmask_dec = [255, 255, 240, 0];
+        wildcard = '+0.0.15.255';
         break;
     case '21':
         netmask_dec = [255, 255, 248, 0];
+        wildcard = '+0.0.7.255';
         break;
     case '22':
         netmask_dec = [255, 255, 252, 0];
+        wildcard = '+0.0.3.255';
         break;
     case '23':
         netmask_dec = [255, 255, 254, 0];
+        wildcard = '+0.0.1.255';
         break;
     case '24':
         netmask_dec = [255, 255, 255, 0];
+        wildcard = '+0.0.0.255';
         break;
     case '25':
         netmask_dec = [255, 255, 255, 128];
+        wildcard = '+0.0.0.127';
         break;
     case '26':
         netmask_dec = [255, 255, 255, 192];
+        wildcard = '+0.0.0.63';
         break;
     case '27':
         netmask_dec = [255, 255, 255, 224];
+        wildcard = '+0.0.0.31';
         break;
     case '28':
         netmask_dec = [255, 255, 255, 240];
+        wildcard = '+0.0.0.15';
         break;
     case '29':
         netmask_dec = [255, 255, 255, 248];
+        wildcard = '+0.0.0.7';
         break;
     case '30':
         netmask_dec = [255, 255, 255, 252];
+        wildcard = '+0.0.0.3';
         break;
     case '31':
         netmask_dec = [255, 255, 255, 254];
+        wildcard = '+0.0.0.1';
         break;
     case '32':
         netmask_dec = [255, 255, 255, 255];
+        wildcard = '+0.0.0.0';
         break;
     }
     sum = 0;
@@ -347,6 +381,7 @@ function calculation() {
     table = document.getElementsByTagName('table');
     table[0].innerHTML += '<tr><td class="name">Адрес</td><td class="value">' + ip_dec[0] + '.' + ip_dec[1] + '.' + ip_dec[2] + '.' + ip_dec[3] + '</td></tr>';
     table[0].innerHTML += '<tr><td class="name">Маска подсети</td><td class="value">' + netmask_dec[0] + '.' + netmask_dec[1] + '.' + netmask_dec[2] + '.' + netmask_dec[3] + '</td></tr>';
+    table[0].innerHTML += '<tr><td class="name">До последнего ip в подсети</td><td class="value">' + wildcard + '</td></tr>';
     table[0].innerHTML += '<tr><td></td><td></td></tr>';
     table[0].innerHTML += '<tr><td class="name">Адрес сети</td><td class="value">' + network_dec[0] + '.' + network_dec[1] + '.' + network_dec[2] + '.' + network_dec[3] + '</td></tr>';
     table[0].innerHTML += '<tr><td class="name">Широковещательный адрес</td><td class="value">' + broadcast_dec[0] + '.' + broadcast_dec[1] + '.' + broadcast_dec[2] + '.' + broadcast_dec[3] + '</td></tr>';
