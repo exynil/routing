@@ -24,6 +24,7 @@ var input_01;
 var input_02;
 var table;
 var tr_result;
+var joke;
 var ip_bin = [];
 var ip_dec = [];
 var netmask_bin = [];
@@ -40,6 +41,12 @@ var types_of_masks = [0, 128, 192, 224, 240, 248, 252, 254, 255];
 var block_00 = document.getElementById('block_00');
 var block_01 = document.getElementById('block_01');
 var button = document.getElementById('button');
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
 button.onmousedown = function(event) {
     if (event.button === 0 && event.ctrlKey === true) {
         type_of_result = 2;
@@ -73,6 +80,8 @@ function begin() {
     count_of_netmask = 0;
     temporary_ip = [0, 0, 0, 0];
     temporary_netmask = [0, 0, 0, 0];
+    ban_01 = [undefined, undefined, undefined, undefined];
+    ban_02 = [undefined, undefined, undefined, undefined];
     for (var i = 0; i <= 3; i++) {
         for (var k = 0; k <= 3; k++) {
             if (input_01.charAt(k) == '.' || input_01.charAt(k) == ',' || input_01.charAt(k) == '/') {
@@ -99,6 +108,41 @@ function begin() {
     }
     if (input_01 == '' || input_02 == '') {
         block_00.innerHTML = '<p id="answer">Необходимо сначала заполнить все поля.</p>';
+    } 
+    else if (ban_01[0] == 0 && ban_01[1] == 0 && ban_01[2] == 0 && ban_01[3] == 0 && ban_02[0] == 255 && ban_02[1] == 255 && ban_02[2] == 255 && ban_02[3] == 255) {
+        joke = getRandomInt(0, 9);
+        switch (joke) {
+        case 0:
+            block_00.innerHTML = '<p id="answer">Этот диапазон не имеет смысла в вычислении.</p>';
+            break;
+        case 1:
+            block_00.innerHTML = '<p id="answer">Хорошая шутка дорогой пользователь.</p>';
+            break;
+        case 2:
+            block_00.innerHTML = '<p id="answer">Очень смешно.</p>';
+            break;
+        case 3:
+            block_00.innerHTML = '<p id="answer">Что с тобой?</p>';
+            break;
+        case 4:
+            block_00.innerHTML = '<p id="answer">Так делать не хорошо!</p>';
+            break;
+        case 5:
+            block_00.innerHTML = '<p id="answer">Ты пытаешься меня разозлить?</p>';
+            break;
+        case 6:
+            block_00.innerHTML = '<p id="answer">Мда.</p>';
+            break;
+        case 7:
+            block_00.innerHTML = '<p id="answer">Чем ты думал прежде чем писать такое?</p>';
+            break;
+        case 8:
+            block_00.innerHTML = '<p id="answer">Скажи мне кто тебя обучал.</p>';
+            break;
+        case 9:
+            block_00.innerHTML = '<p id="answer">Такого я не ожидал.</p>';
+            break;
+        }
     } else {
         for (var i = 0; i <= 3; i++) {
             if (ban_01[i] >= 0 && ban_01[i] <= 255 && ban_02[i] >= 0 && ban_02[i] <= 255) {
@@ -337,8 +381,10 @@ function calculation() {
         } else if (ban_01[count_ip] == 0 && count_ip == 3) {
             ban++;
             count_of_routing = 1;
-            if (type_of_result != 2) {
-                table[0].innerHTML += '<tr><td></td><td></td><td></td><td></td></tr>';
+            if (type_of_result == 1) {
+                if ((ban_01[0] != 0 || ban_01[1] != 0 || ban_01[2] != 0 || ban_01[3] != 0) && (ban_02[0] != 255 || ban_02[1] != 255 || ban_02[2] != 255 || ban_02[3] != 255)) {
+                    table[0].innerHTML += '<tr><td></td><td></td><td></td><td></td></tr>';
+                }
             }
             for (var i = 0; i <= 2; i++) {
                 temporary_ip[i] = ban_02[i];
@@ -369,8 +415,10 @@ function calculation() {
                 if (count_ip == 3) {
                     ban++;
                     count_of_routing = 1;
-                    if (type_of_result != 2) {
-                        table[0].innerHTML += '<tr><td></td><td></td><td></td><td></td></tr>';
+                    if (type_of_result == 1) {
+                        if ((ban_01[0] != 0 || ban_01[1] != 0 || ban_01[2] != 0 || ban_01[3] != 0) && (ban_02[0] != 255 || ban_02[1] != 255 || ban_02[2] != 255 || ban_02[3] != 255)) {
+                            table[0].innerHTML += '<tr><td></td><td></td><td></td><td></td></tr>';
+                        }
                     }
                     for (var i = 0; i <= 2; i++) {
                         temporary_ip[i] = ban_02[i];
