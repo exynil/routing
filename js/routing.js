@@ -102,7 +102,7 @@ function begin() {
         block_00.innerHTML = '<p id="answer">Необходимо сначала заполнить все поля.</p>';
     } 
     else if (ban_01[0] == 0 && ban_01[1] == 0 && ban_01[2] == 0 && ban_01[3] == 0 && ban_02[0] == 255 && ban_02[1] == 255 && ban_02[2] == 255 && ban_02[3] == 255) {
-        block_00.innerHTML = '<p id="answer">Этот диапазон не имеет смысла в вычислении.</p>';
+        block_00.innerHTML = '<p id="answer">Запретный диапазон занимает все ip адреса.</p>';
     } else {
         for (var i = 0; i <= 3; i++) {
             if (ban_01[i] >= 0 && ban_01[i] <= 255 && ban_02[i] >= 0 && ban_02[i] <= 255) {
@@ -113,7 +113,7 @@ function begin() {
             }
         }
         if (test == false) {
-            block_00.innerHTML = '<p id="answer">Ошибка в ip адресе! :(</p>';
+            block_00.innerHTML = '<p id="answer">Ошибка в ip адресе.</p>';
         } else {
             if (ban_01[0] < ban_02[0]) {
                 if (type_of_result == 2) {
@@ -159,7 +159,7 @@ function begin() {
                             calculation();
                             return;
                         } else if (ban_01[3] == ban_02[3]) {
-                            block_00.innerHTML = '<p id="answer">Вы ввели два одинаковых адреса. Необходимо указать какой нибудь диапазон.</p>';
+                            block_00.innerHTML = '<p id="answer">Начальный и конечный ip адреса запретного диапазона не должны быть равны.</p>';
                         } else {
                             block_00.innerHTML = '<p id="answer">Четвёртый октет начала диапазона должен быть меньше четвёртого октета конца диапазона.</p>';
                         }
