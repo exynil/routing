@@ -14,7 +14,6 @@ var count_of_routing;
 var count_of_result;
 var count_of_netmask;
 var count_ip;
-var sum;
 var octet;
 var ban;
 var t_01;
@@ -65,7 +64,6 @@ function begin() {
     access = true;
     ban = 1;
     step_of_mask = 0;
-    sum = 0;
     count_ip = 0;
     octet = -1;
     count_of_number = 1;
@@ -213,7 +211,6 @@ function calculation() {
         count = 1;
         num = netmask_dec[i];
         if (num == 0) {
-            sum += 8;
             netmask_bin[i] = bin;
         } else {
             while (num != 1) {
@@ -230,13 +227,6 @@ function calculation() {
             }
             bin += count;
             netmask_bin[i] = bin;
-            while (bin != 0) {
-                if (bin % 10 == 0) {
-                    sum++;
-                }
-                bin /= 10;
-                bin = bin.toFixed(0);
-            }
         }
     }
     for (var i = 3; i >= 0; i--) {
@@ -336,7 +326,6 @@ function calculation() {
             temporary_ip[count_ip] = 0;
             temporary_netmask[count_ip] = types_of_masks[8];
             step_of_mask = 0;
-            sum = 0;
             count_ip++;
             calculation();
             return;
@@ -372,7 +361,6 @@ function calculation() {
                 tr_result[count_of_result++].innerHTML += '<td class="number">' + count_of_routing++ + '</td>';
             }
             step_of_mask = 0;
-            sum = 0;
             if (broadcast_dec[count_ip] + 1 == ban_01[count_ip]) {
                 if (count_ip == 3) {
                     ban++;
@@ -458,8 +446,6 @@ function calculation() {
                 tr_result[count_of_result++].innerHTML += '<td class="number">' + count_of_routing++ + '</td>';
             }
             step_of_mask = 0;
-            sum = 0;
-            access = true;
             if (broadcast_dec[count_ip] == 255) {
                 if (count_ip == 0) {
                     ban++;
@@ -497,7 +483,6 @@ function calculation() {
                 }
             }
         }
-        access = true;
         calculation();
         return;
     }
