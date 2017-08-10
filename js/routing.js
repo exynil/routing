@@ -39,7 +39,6 @@ var types_of_masks = [0, 128, 192, 224, 240, 248, 252, 254, 255];
 var block_00 = document.getElementById('block_00');
 var block_01 = document.getElementById('block_01');
 var button = document.getElementById('button');
-
 button.onmousedown = function(event) {
     if (event.button === 0 && event.ctrlKey === true) {
         type_of_result = 2;
