@@ -51,8 +51,7 @@ function data_test() {
         }
         if (i == 3 && input_01.length > 0 && dots == 3) {
             ip_dec[i] = Number(input_01);
-        }
-        else if (i == 3 && input_01.length == 0 && dots == 3) {
+        } else if (i == 3 && input_01.length == 0 && dots == 3) {
             return;
         }
     }
