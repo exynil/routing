@@ -1,14 +1,14 @@
 var cycle_stop;
 var input_01_test;
 var input_02_test;
-var num;
-var num_backup;
-var bin;
+var num_01;
+var num_02;
 var step;
-var count;
-var count_backup;
+var count_01;
+var count_02;
 var count_ip;
 var sum;
+var bin;
 var octet;
 var dots;
 var number_of_hosts;
@@ -215,50 +215,14 @@ function calculation() {
     octet = -1;
     cycle_stop = false;
     for (var i = 0; i <= 3; i++) {
-        bin = 0;
-        count = 1;
-        num = ip_dec[i];
-        if (num == 0) {
-            ip_bin[i] = bin;
-        } else {
-            while (num != 1) {
-                if (num % 2 == 1) {
-                    bin += count;
-                    num /= 2;
-                    num -= 0.5;
-                    num = num.toFixed(0);
-                    count *= 10;
-                } else {
-                    num /= 2;
-                    count *= 10;
-                }
-            }
-            bin += count;
-            ip_bin[i] = bin;
-        }
+        ip_bin[i] = Number(ip_dec[i].toString(2));
+        netmask_bin[i] = Number(netmask_dec[i].toString(2));
     }
     for (var i = 0; i <= 3; i++) {
-        bin = 0;
-        count = 1;
-        num = netmask_dec[i];
-        if (num == 0) {
+        if (netmask_bin[i] == 0) {
             sum += 8;
-            netmask_bin[i] = bin;
         } else {
-            while (num != 1) {
-                if (num % 2 == 1) {
-                    bin += count;
-                    num /= 2;
-                    num -= 0.5;
-                    num = num.toFixed(0);
-                    count *= 10;
-                } else {
-                    num /= 2;
-                    count *= 10;
-                }
-            }
-            bin += count;
-            netmask_bin[i] = bin;
+            bin = netmask_bin[i];
             while (bin != 0) {
                 if (bin % 10 == 0) {
                     sum++;
@@ -268,41 +232,45 @@ function calculation() {
             }
         }
     }
+    while (sum != 0) {
+        number_of_hosts *= 2;
+        sum--;
+    }
     for (var i = 3; i >= 0; i--) {
         if (cycle_stop == true) {
             break;
         }
-        count = 0;
-        num = netmask_bin[i];
-        while (num != 0) {
-            if (num % 10 == 1) {
+        count_01 = 0;
+        num_01 = netmask_bin[i];
+        while (num_01 != 0) {
+            if (num_01 % 10 == 1) {
                 cycle_stop = true;
                 octet = i;
                 break;
             }
-            count++;
-            num /= 10;
-            num = num.toFixed(0);
+            count_01++;
+            num_01 /= 10;
+            num_01 = num_01.toFixed(0);
         }
     }
     for (var i = 0; i <= 3; i++) {
         if (i == octet) {
-            count_backup = count;
-            num = ip_bin[i];
+            count_02 = count_01;
+            num_01 = ip_bin[i];
             step = 10;
-            while (count != 0) {
-                num /= 10;
-                num = num.toFixed(0);
-                count--;
+            while (count_01 != 0) {
+                num_01 /= 10;
+                num_01 = num_01.toFixed(0);
+                count_01--;
 
             }
-            count = count_backup;
-            while (count_backup != 0) {
-                num *= 10;
+            count_01 = count_02;
+            while (count_02 != 0) {
+                num_01 *= 10;
                 step *= 10;
-                count_backup--;
+                count_02--;
             }
-            network_bin[i] = num;
+            network_bin[i] = num_01;
         } else if (i > octet) {
             network_bin[i] = 0;
         } else {
@@ -311,56 +279,30 @@ function calculation() {
     }
     for (var i = 0; i <= 3; i++) {
         if (i == octet) {
-            count_backup = count;
-            num = ip_bin[i];
+            count_02 = count_01;
+            num_01 = ip_bin[i];
             step = 1;
-            num_backup = num;
-            while (count != 0) {
-                if (num_backup % 10 == 0) {
-                    num += step;
+            num_02 = num_01;
+            while (count_01 != 0) {
+                if (num_02 % 10 == 0) {
+                    num_01 += step;
                 }
-                num_backup /= 10;
-                num_backup = num_backup.toFixed(0);
+                num_02 /= 10;
+                num_02 = num_02.toFixed(0);
                 step *= 10;
-                count--;
+                count_01--;
             }
 
-            broadcast_bin[i] = num;
+            broadcast_bin[i] = num_01;
         } else if (i > octet) {
             broadcast_bin[i] = 11111111;
         } else {
             broadcast_bin[i] = ip_bin[i];
         }
     }
-    for (var i = 0; i <= 1; i++) {
-        for (var k = 0; k <= 3; k++) {
-            count = 8;
-            step = 1;
-            num_backup = 0;
-            switch (i) {
-            case 0:
-                num = network_bin[k];
-                break;
-            case 1:
-                num = broadcast_bin[k];
-                break;
-            }
-            while (count != 0) {
-                num_backup += num % 10 * step;
-                num /= 10;
-                num = num.toFixed(0);
-                step *= 2;
-                count--;
-            }
-            switch (i) {
-            case 0:
-                network_dec[k] = num_backup;
-                break;
-            case 1:
-                broadcast_dec[k] = num_backup;
-                break;
-            }
-        }
+    for (var i = 0; i <= 3; i++) {
+        network_dec[i] = parseInt(network_bin[i], 2);
+        broadcast_dec[i] = parseInt(broadcast_bin[i], 2);
     }
     for (var i = 0; i <= 2; i++) {
         hostmin[i] = network_dec[i];
@@ -372,10 +314,6 @@ function calculation() {
     } else {
         hostmin[3] = network_dec[3] + 1;
         hostmax[3] = broadcast_dec[3] - 1;
-    }
-    while (sum != 0) {
-        number_of_hosts *= 2;
-        sum--;
     }
     out_01.innerHTML = '<table></table>';
     table = document.getElementsByTagName('table');
