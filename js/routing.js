@@ -198,7 +198,7 @@ function calculation() {
             }
             count_01++;
             num_01 /= 10;
-            num_01 = num_01.toFixed(0);
+            num_01 = ~~num_01
         }
     }
     for (var i = 0; i <= 3; i++) {
@@ -208,7 +208,7 @@ function calculation() {
             step = 10;
             while (count_01 != 0) {
                 num_01 /= 10;
-                num_01 = num_01.toFixed(0);
+                num_01 = ~~num_01;
                 count_01--;
             }
             count_01 = count_02;
@@ -235,7 +235,7 @@ function calculation() {
                     num_01 += step;
                 }
                 num_02 /= 10;
-                num_02 = num_02.toFixed(0);
+                num_02 = ~~num_02;
                 step *= 10;
                 count_01--;
             }

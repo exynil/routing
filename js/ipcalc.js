@@ -227,7 +227,7 @@ function calculation() {
                     sum++;
                 }
                 bin /= 10;
-                bin = bin.toFixed(0);
+                bin = ~~bin;
             }
         }
     }
@@ -249,7 +249,7 @@ function calculation() {
             }
             count_01++;
             num_01 /= 10;
-            num_01 = num_01.toFixed(0);
+            num_01 = ~~num_01;
         }
     }
     for (var i = 0; i <= 3; i++) {
@@ -259,7 +259,7 @@ function calculation() {
             step = 10;
             while (count_01 != 0) {
                 num_01 /= 10;
-                num_01 = num_01.toFixed(0);
+                num_01 = ~~num_01;
                 count_01--;
 
             }
@@ -287,7 +287,7 @@ function calculation() {
                     num_01 += step;
                 }
                 num_02 /= 10;
-                num_02 = num_02.toFixed(0);
+                num_02 = ~~num_02;
                 step *= 10;
                 count_01--;
             }
@@ -328,12 +328,12 @@ function calculation() {
     table[0].innerHTML += '<tr><td></td><td></td></tr>';
     if (netmask_dec[3] == 255 || netmask_dec[3] == 254) {
         number_of_addresses = number_of_hosts;
-        table[0].innerHTML += '<tr><td class="name">Количество хостов</td><td class="value">' + number_of_hosts + '</td></tr>';
-        table[0].innerHTML += '<tr><td class="name">Количество адресов</td><td class="value">' + number_of_addresses + '</td></tr>';
+        table[0].innerHTML += '<tr><td class="name">Количество хостов</td><td class="value">' + number_of_hosts.toLocaleString() + '</td></tr>';
+        table[0].innerHTML += '<tr><td class="name">Количество адресов</td><td class="value">' + number_of_addresses.toLocaleString() + '</td></tr>';
     } else {
         number_of_addresses = number_of_hosts - 2;
-        table[0].innerHTML += '<tr><td class="name">Количество хостов</td><td class="value">' + number_of_hosts + '</td></tr>';
-        table[0].innerHTML += '<tr><td class="name">Количество адресов</td><td class="value">' + number_of_addresses + '</td></tr>';
+        table[0].innerHTML += '<tr><td class="name">Количество хостов</td><td class="value">' + number_of_hosts.toLocaleString() + '</td></tr>';
+        table[0].innerHTML += '<tr><td class="name">Количество адресов</td><td class="value">' + number_of_addresses.toLocaleString() + '</td></tr>';
     }
 }
 
