@@ -51,8 +51,15 @@ li:hover {
 	background: rgba(10, 10, 10, 0.3);
 }
 
-#creator {
+#teacher {
 	margin-top: 100px;
+	font-weight: bold;
+	font-size: 22px;
+	color: #444;
+}
+
+#creator {
+	margin-top: 40px;
 	font-weight: bold;
 	font-size: 22px;
 	color: #444;
